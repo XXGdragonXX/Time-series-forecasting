@@ -129,7 +129,7 @@ def main():
             # Display Final Forecast
             st.success("✅ Model Execution Completed!")
             st.markdown("### 📊 Final Sales Forecast for April")
-            st.dataframe(final_table.style.format({"Forecast": "{:,.2f}"}))  # Beautify table with formatted numbers
+            st.dataframe(final_forecast.style.format({"Forecast": "{:,.2f}"}))  # Beautify table with formatted numbers
 
 if __name__ == "__main__":
     main()
