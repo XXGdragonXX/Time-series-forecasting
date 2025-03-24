@@ -68,33 +68,34 @@ def main():
             with col2:
                 st.write("**Unique Values:**")
                 st.write(updated_data[category].nunique())
+
+                
         with st.spinner("Running ensemble model... This may take a few moments"):
-            try:
-                ensemble = Ensemble(updated_data, weight_ml, weight_ma, model,category)
-                final_forecast = ensemble.final_forecast()
-                
-                # Display Results
-                st.success("Forecast completed successfully!")
-                
-                col1, col2 = st.columns([3, 1])
-                with col1:
-                    st.dataframe(
-                        final_forecast.style.format("{:,.2f}"),
-                        height=400
-                    )
-                with col2:
-                    st.metric(
-                        "Total April Forecast", 
-                        f"${final_forecast['Forecast'].sum():,.2f}"
-                    )
-                
-                # Visualization
-                st.line_chart(
-                    final_forecast.set_index(category)['Forecast']
+            ensemble = Ensemble(updated_data, weight_ml, weight_ma, model,category)
+            final_forecast = ensemble.final_forecast()
+            
+            # Display Results
+            st.success("Forecast completed successfully!")
+            
+            col1, col2 = st.columns([3, 1])
+            with col1:
+                st.dataframe(
+                    final_forecast.style.format("{:,.2f}"),
+                    height=400
                 )
+            with col2:
+                st.metric(
+                    "Total April Forecast", 
+                    f"${final_forecast['Forecast'].sum():,.2f}"
+                )
+            
+            # Visualization
+            st.line_chart(
+                final_forecast.set_index(category)['Forecast']
+            )
                 
-            except Exception as e:
-                st.error(f"Model execution failed: {str(e)}")
+            # except Exception as e:
+            #     st.error(f"Model execution failed: {str(e)}")
 
 if __name__ == "__main__":
     main()
