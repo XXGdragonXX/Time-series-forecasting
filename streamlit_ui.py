@@ -97,6 +97,9 @@ def main():
             # except Exception as e:
             #     st.error(f"Model execution failed: {str(e)}")
             st.write(f"Optimal number of clusters for KMeans: {optimal_clusters}")
+
+
+    # Footer
     st.footer(" .......Made with ❤️ by XXGdragonXX .....")
 
 if __name__ == "__main__":
