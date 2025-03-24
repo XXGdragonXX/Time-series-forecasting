@@ -10,6 +10,7 @@ class MA():
         self.weight_mar = 0.5
         self.learning_rate = 0.01
         self.tolerance = 0.0001
+        self.category = category
     def calculate_moving_average(self):
         """
         we are calculating based on the sliding window moving average 
@@ -18,7 +19,7 @@ class MA():
         MA = []
         for index, row in self.data.iterrows():
             month_dict = {
-                "Brand": row['Brand'],
+                category: row[category],
                 "April_Forecast": self.weight_jan * row['Jan_Sale'] + self.weight_feb * row['Feb_Sale'] + self.weight_mar * row['Mar_Sale']
             }
             MA.append(month_dict)
@@ -29,7 +30,7 @@ class MA():
         """
         Calculate the Mean Squared Error (MSE).
         """
-        actual = self.data['March_Sale']
+        actual = self.data['Mar_Sale']
         forecast = forecast_df['Forecast']
         mse = np.mean((actual - forecast) ** 2)
         return mse
@@ -55,13 +56,13 @@ class MA():
                 break
 
             # Calculate gradients
-            actual = self.data['March_Sale']
+            actual = self.data['Mar_Sale']
             forecast = forecast_df['Forecast']
             error_gradient = 2 * (forecast - actual) / len(actual)
 
             gradient_jan = np.mean(error_gradient * self.data['Jan_Sale'])
             gradient_feb = np.mean(error_gradient * self.data['Feb_Sale'])
-            gradient_mar = np.mean(error_gradient * self.data['March_Sale'])
+            gradient_mar = np.mean(error_gradient * self.data['Mar_Sale'])
 
             # Update weights
             self.weight_jan -= self.learning_rate * gradient_jan
