@@ -48,13 +48,11 @@ def main():
     """)
 
     # Process Data
-    try:
-        data = pd.read_csv("walmart.csv")
-        data_preparation = data_prep(data, category)
-        updated_data = data_preparation.main()
-    except Exception as e:
-        st.error(f"Error processing data: {str(e)}")
-        st.stop()
+    # try:
+    data = pd.read_csv("walmart.csv")
+    data_preparation = data_prep(data, category)
+    updated_data = data_preparation.main()
+
 
     # Display Data
     st.subheader("📊 Monthly Sales by Selected Category")
