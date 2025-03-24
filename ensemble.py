@@ -19,9 +19,9 @@ class Ensemble():
         """
         Calculate the final forecast using ensemble model.
         """
-        if model == 'Prophet':
+        if self.model == 'Prophet':
             forecast_ml = self.ml.timeseries()
-        elif model == 'ARIMA':
+        elif self.model == 'ARIMA':
             forecast_ml = self.ml.arima()
         forecast_ma = self.ma.calculate_moving_average()
         forecast = []
