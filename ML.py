@@ -83,12 +83,11 @@ class ML():
         clusters = kmeans.fit_predict(scaled_features)
 
         clustered_data = pd.DataFrame({
-            self.category: primary_keys,
+            self.category: primary_keys.values, 
             'Cluster': clusters,
-            'Jan_Sale': self.data['Jan_Sale'],
-            'Feb_Sale': self.data['Feb_Sale'],
-            'Mar_Sale': self.data['Mar_Sale']
-
+            'Jan_Sale': self.data['Jan_Sale'].values,
+            'Feb_Sale': self.data['Feb_Sale'].values,
+            'Mar_Sale': self.data['Mar_Sale'].values
         })
         return clustered_data
 
