@@ -122,7 +122,8 @@ def main():
             # Convert Brand to string for better display
             # final_forecast['Brand'] = final_forecast.Brand.astype(str)
 
-            final_table = data.set_index("Brand").join(final_forecast.set_index("Brand"), on="Brand")
+            final_table = data.merge(final_forecast, on="Brand")
+
 
             # Display Final Forecast
             st.success("✅ Model Execution Completed!")
