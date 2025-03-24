@@ -50,6 +50,7 @@ def main():
     # Process Data
     # try:
     data = pd.read_csv("walmart.csv")
+    logging.info(f"Data loaded successfully: {data.shape}")
     data_preparation = data_prep(data, category)
     updated_data = data_preparation.main()
 
