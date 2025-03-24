@@ -51,7 +51,7 @@ def main():
     try:
         data = pd.read_csv("walmart.csv")
         data_preparation = data_prep(data, category)
-        updated_data = data_preparation.get_monthly_data()
+        updated_data = data_preparation.main()
     except Exception as e:
         st.error(f"Error processing data: {str(e)}")
         st.stop()
