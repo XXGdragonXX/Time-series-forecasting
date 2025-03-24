@@ -4,3 +4,4 @@ streamlit
 matplotlib
 prophet
 statsmodels
+scikit-learn
