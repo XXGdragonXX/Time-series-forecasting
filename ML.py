@@ -4,6 +4,8 @@ from prophet import Prophet
 from statsmodels.tsa.arima.model import ARIMA
 import logging
 from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+
 
 class ML():
     def __init__(self, data ,category):
