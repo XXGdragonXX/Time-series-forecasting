@@ -28,7 +28,7 @@ class data_prep():
         print(category_lvl_data.head())
 
         monthly_sales = (
-            category_lvl_data.groupby([category,'Month'])['Total_Sale']
+            category_lvl_data.groupby([self.category,'Month'])['Total_Sale']
             .sum()
             .unstack()
             .reset_index()
