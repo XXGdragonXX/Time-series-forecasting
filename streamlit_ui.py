@@ -100,7 +100,24 @@ def main():
 
 
     # Footer
-    st.footer(" .......Made with ❤️ by XXGdragonXX .....")
+    st.markdown(
+        """
+        <style>
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+        }
+        </style>
+        <div class="footer">
+            <p>Made with ❤️ by XXGdragonXX</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 if __name__ == "__main__":
     main()
