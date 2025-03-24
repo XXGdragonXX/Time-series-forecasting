@@ -13,7 +13,7 @@ class data_prep():
 
     def generate_data(self):
         days_in_q1 = (datetime(2025,4,1) - datetime(2025,1,1)).days
-        self.data['purchase_date'] = [datetime(2025,1,1) + timedelta(days=random.randint(1, days_in_q1 - 1)) for _ in range(len(data))]
+        self.data['purchase_date'] = [datetime(2025,1,1) + timedelta(days=random.randint(1, days_in_q1 - 1)) for _ in range(len(self.data))]
         _lvl_data = (
             data.groupby([category, "purchase_date"])["Purchase"]
             .sum()
