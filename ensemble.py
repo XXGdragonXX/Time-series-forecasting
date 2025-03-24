@@ -25,6 +25,8 @@ class Ensemble():
             forecast_ml = self.ml.timeseries()
         elif self.model == 'ARIMA':
             forecast_ml = self.ml.arima()
+        elif self.model == 'Kmeans':
+            forecast_ml = self.ml.unsupervised_model()
         forecast_ma = self.ma.calculate_moving_average()
         forecast = []
         for index, row in forecast_ml.iterrows():
@@ -35,9 +37,7 @@ class Ensemble():
             forecast.append(month_dict)
         df_forecast = pd.DataFrame(forecast)
 
-        clustered_data = self.ml.unsupervised_model()
-
-        return df_forecast , clustered_data
+        return df_forecast
 
 # if __name__ == "__main__":
 #     data = pd.read_csv("data.csv")

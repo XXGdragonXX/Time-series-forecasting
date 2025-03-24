@@ -98,7 +98,9 @@ class ML():
         cluster_stats['feb_mar_growth'] = (cluster_stats['Mar_Sale'] - cluster_stats['Feb_Sale']) / cluster_stats['Feb_Sale']
         cluster_stats['projected_growth'] = cluster_stats['feb_mar_growth'] + cluster_stats['jan_feb_growth']
         clustered_data = clustered_data.merge(cluster_stats['projected_growth'], on='Cluster', how='left')
-        return clustered_data
+        clustered_data['April_Forecast'] = clustered_data['Mar_Sale'] * (1 + clustered_data['projected_growth'])
+        ml_forecast = clustered_data[[self.category, 'April_Forecast']]
+        return ml_forecast
         # return cluster_stats
 
 
