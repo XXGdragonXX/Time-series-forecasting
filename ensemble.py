@@ -7,7 +7,7 @@ import logging
 
 
 class Ensemble():
-    def __init__(self, data , weight_ml,weight_ma,self.model):
+    def __init__(self, data , weight_ml,weight_ma,model):
         self.data = data
         self.ml = ML(data)
         self.ma = MA(data)
