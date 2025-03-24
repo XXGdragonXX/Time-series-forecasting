@@ -85,6 +85,7 @@ def main():
     data = pd.read_csv("final_data.csv")
     data['Brand'] = data['Brand'].astype(str)  # Convert Brand to string for better display
     # Display Data Overview
+    st.dataframe(data)
     with st.expander("🔍 View Dataset Overview"):
         st.write("#### Columns in the Dataset:")
         st.write(data.columns.tolist())  # Display as a list
