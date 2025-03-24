@@ -72,7 +72,7 @@ def main():
 
         with st.spinner("Running ensemble model... This may take a few moments"):
             ensemble = Ensemble(updated_data, weight_ml, weight_ma, model,category)
-            final_forecast , optimal_clusters = ensemble.final_forecast()
+            final_forecast , clustered_data = ensemble.final_forecast()
             
             # Display Results
             st.success("Forecast completed successfully!")
@@ -96,7 +96,7 @@ def main():
                 
             # except Exception as e:
             #     st.error(f"Model execution failed: {str(e)}")
-            st.write(f"Optimal number of clusters for KMeans: {optimal_clusters}")
+            st.table(f"{clustered_data}")
 
 
     # Footer

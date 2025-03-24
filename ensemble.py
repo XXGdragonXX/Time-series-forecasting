@@ -34,18 +34,10 @@ class Ensemble():
             }
             forecast.append(month_dict)
         df_forecast = pd.DataFrame(forecast)
-        max_clusters = 10
-        wcss = []
-        for n in range(1, max_clusters+1):
-            kmeans = KMeans(n_clusters=n, init='k-means++', random_state=42)
-            kmeans.fit(self.data)
-            wcss.append(kmeans.inertia_)
-            deltas = np.diff(wcss)
-        deltas2 = np.diff(deltas)
-        optimal_clusters = np.argmax(deltas2) + 2 
-        
 
-        return df_forecast , optimal_clusters
+        clustered_data = self.ml.unsupervised_model()
+
+        return df_forecast , clustered_data
 
 # if __name__ == "__main__":
 #     data = pd.read_csv("data.csv")

@@ -63,6 +63,33 @@ class ML():
         """
         Calculate april forecast using unsupervised learnning
         """
-        pass
+        max_clusters = 10
+        wcss = []
+        features = self.data[['Jan_Sale', 'Feb_Sale', 'Mar_Sale']]
+        scaler = StandardScaler()
+        scaled_features = scaler.fit_transform(features)
+        primary_keys = self.data[self.category]
+        for n in range(1, max_clusters+1):
+            kmeans = KMeans(n_clusters=n, init='k-means++', random_state=42)
+            kmeans.fit(features)
+            wcss.append(kmeans.inertia_)
+            deltas = np.diff(wcss)
+        deltas2 = np.diff(deltas)
+        optimal_clusters = np.argmax(deltas2) + 2 
+        logging.info(f"Optimal number of clusters: {optimal_clusters}")
+        kmeans = KMeans(n_clusters=optimal_clusters, init='k-means++', random_state=42)
+        clusters = kmeans.fit_predict(scaled_features)
+
+        clustered_data = pd.DataFrame(
+            self.category: primary_keys,
+            'Cluster': clusters
+            'Jan_Sale': self.data['Jan_Sale'],
+            'Feb_Sale': self.data['Feb_Sale'],
+            'Mar_Sale': self.data['Mar_Sale']
+
+        )
+        return clustered_data
+        
+
 
 
