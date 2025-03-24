@@ -21,14 +21,22 @@ def main():
 
     # Sidebar for Model Weightage Selection
     st.sidebar.header("⚖️ Model Weightage Selection")
+
+    # ML Model Weight Slider (0 to 1)
     weight_ml = st.sidebar.slider("ML Model Weight (%)", min_value=0.0, max_value=1.0, value=0.5, step=0.05)
-    weight_ma = st.sidebar.slider("Moving Average Model Weight (%)", min_value=0.0, max_value=1.0, value=0.5, step=0.05)
+
+    # Ensure sum = 1
+    weight_ma = round(1.0 - weight_ml, 2)
+
+    # Display updated values
+    st.sidebar.write(f"🟢 ML Weight: **{weight_ml}**")
+    st.sidebar.write(f"🔵 Moving Average Weight: **{weight_ma}** (Auto-Adjusted)")
 
     # Ensemble Model Explanation
     st.markdown("### 🔗 How the Ensemble Model Works")
     st.write("The **final forecast** is computed as a weighted combination of:")
-    st.write("- **ML Model Prediction** (Weight: {:.2f})".format(weight_ml))
-    st.write("- **Moving Average Model Prediction** (Weight: {:.2f})".format(weight_ma))
+    st.write(f"- **ML Model Prediction** (Weight: **{weight_ml}**)")
+    st.write(f"- **Moving Average Model Prediction** (Weight: **{weight_ma}**)")
     st.code("""
     final_forecast = (weight_ml * forecast_ml) + (weight_ma * forecast_ma)
     """, language="python")
