@@ -10,7 +10,8 @@ def main():
     data = pd.read_csv("final_data.csv")
     st.write("Columns:")
     st.write(data.columns)
-
+    st.write("Brands")
+    st.write(data['Brand'].unique())
     weight_ml = st.input("Enter the weightage for ML model")
     weight_ma = st.input("Enter the weightage for Moving Average model")
 
