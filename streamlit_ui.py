@@ -69,7 +69,7 @@ def main():
                 st.write("**Unique Values:**")
                 st.write(updated_data[category].nunique())
 
-                
+
         with st.spinner("Running ensemble model... This may take a few moments"):
             ensemble = Ensemble(updated_data, weight_ml, weight_ma, model,category)
             final_forecast = ensemble.final_forecast()
@@ -86,12 +86,12 @@ def main():
             with col2:
                 st.metric(
                     "Total April Forecast", 
-                    f"${final_forecast['Forecast'].sum():,.2f}"
+                    f"${final_forecast['April_Forecast'].sum():,.2f}"
                 )
             
             # Visualization
             st.line_chart(
-                final_forecast.set_index(category)['Forecast']
+                final_forecast.set_index(category)['April_Forecast']
             )
                 
             # except Exception as e:
