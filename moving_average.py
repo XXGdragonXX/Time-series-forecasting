@@ -19,7 +19,7 @@ class MA():
         for index, row in self.data.iterrows():
             month_dict = {
                 "Brand": row['Brand'],
-                "Forecast": self.weight_jan * row['Jan_Sale'] + self.weight_feb * row['Feb_Sale'] + self.weight_mar * row['March_Sale']
+                "April_Forecast": self.weight_jan * row['Jan_Sale'] + self.weight_feb * row['Feb_Sale'] + self.weight_mar * row['March_Sale']
             }
             MA.append(month_dict)
         df_MA = pd.DataFrame(MA)    
@@ -81,28 +81,13 @@ class MA():
         print(f"Final weights: Jan={self.weight_jan}, Feb={self.weight_feb}, Mar={self.weight_mar}")
         print(f"Final error: {prev_error}")
 
-        
- 
- 
+    def main(self):
+        """
+        Main function to run the moving average model.
+        """
+        self.gradient_descent()
+        finalData = self.calculate_moving_average()
+        return finalData
 
 
 
-
-
-
-
-
-
-
-csv_data = pd.read_csv('final_data.csv')
-MA_final = MA(csv_data)
-"""
-Calculating the most optimal weights for the moving average model.
-"""
-MA_final.gradient_descent()
-
-"""
-Calculating the moving average.
-"""
-finalData = MA_final.calculate_moving_average()
-print(finalData.head())

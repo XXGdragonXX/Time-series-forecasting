@@ -16,3 +16,5 @@ STEP 2
 3. Extract the table as a csv or if you can create a connnector and directly connect , thats even better
 
 STEP 3 
+1. Calculate the Moving average based on the last 3 months sale . We are using weighted moving average intialising the weights. 
+2. Use Gradient descent with loss function to to find the best weights and calculate the next month forecast
