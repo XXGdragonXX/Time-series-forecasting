@@ -18,9 +18,9 @@ def generate_data(data,category):
 
 def get_monthly_data(data,category):
     category_lvl_data = generate_data(data,category)
+    print(category_lvl_data.head())
     monthly_sales = {}
     months = category_lvl_data['date'].dt.month.unique()
-
     for month in months:
         month_name = pd.to_datetime(f'2025-{month}-01').strftime('%b')  # Convert month number to name
         monthly_sales[month_name] = (
