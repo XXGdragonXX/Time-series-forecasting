@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import logging
 from ensemble import Ensemble
 from data_preprocessing import data_prep
 
