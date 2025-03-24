@@ -22,8 +22,8 @@ class data_prep():
         )
         return _lvl_data
 
-    def get_monthly_data(self):
-        category_lvl_data = self.generate_data()
+    def get_monthly_data(self,category_lvl_data):
+        # category_lvl_data = self.generate_data()
         category_lvl_data['Month'] = category_lvl_data['Date'].dt.strftime('%b_%Y')
         print(category_lvl_data.head())
 
@@ -42,6 +42,10 @@ class data_prep():
         logging.info(f"Monthly sales data: {monthly_sales.head()}")
         return monthly_sales
 
+    def main(self):
+        category_lvl_data = self.generate_data()
+        monthly_sales = self.get_monthly_data(category_lvl_data)
+        return monthly_sales
 
 
 # if __name__ == "__main__":
