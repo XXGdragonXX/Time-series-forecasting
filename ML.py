@@ -82,7 +82,7 @@ class ML():
 
         clustered_data = pd.DataFrame({
             self.category: primary_keys,
-            'Cluster': clusters
+            'Cluster': clusters,
             'Jan_Sale': self.data['Jan_Sale'],
             'Feb_Sale': self.data['Feb_Sale'],
             'Mar_Sale': self.data['Mar_Sale']
