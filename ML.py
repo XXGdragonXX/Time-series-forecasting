@@ -89,6 +89,7 @@ class ML():
             'Feb_Sale': self.data['Feb_Sale'].values,
             'Mar_Sale': self.data['Mar_Sale'].values
         })
+        logging.info(f"Clustered data datatype: {type(clustered_data)}")
         return clustered_data
 
 
