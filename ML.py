@@ -16,7 +16,7 @@ class ML():
         for index , row in self.data.iterrows():
             sales_df = pd.DataFrame({
                 'ds': ['2021-01-01', '2021-02-01', '2021-03-01'], # Dates
-                'y': [row['Jan_Sale'], row['Feb_Sale'], row['March_Sale']] # Sales
+                'y': [row['Jan_Sale'], row['Feb_Sale'], row['Mar_Sale']] # Sales
             })
             logging.info(f"Sales data for {row['Brand']} is {sales_df}")
             model = Prophet()

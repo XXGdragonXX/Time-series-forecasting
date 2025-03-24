@@ -19,7 +19,7 @@ class MA():
         for index, row in self.data.iterrows():
             month_dict = {
                 "Brand": row['Brand'],
-                "April_Forecast": self.weight_jan * row['Jan_Sale'] + self.weight_feb * row['Feb_Sale'] + self.weight_mar * row['March_Sale']
+                "April_Forecast": self.weight_jan * row['Jan_Sale'] + self.weight_feb * row['Feb_Sale'] + self.weight_mar * row['Mar_Sale']
             }
             MA.append(month_dict)
         df_MA = pd.DataFrame(MA)    
