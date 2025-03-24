@@ -7,7 +7,7 @@ from ensemble import Ensemble
 def main():
     st.title("Sales Forecasting")
     st.write("This app forecasts the sales for April using ensemble model.")
-    data = pd.read_csv("data.csv")
+    data = pd.read_csv("final_data.csv")
     st.write("Columns:")
     st.write(data.columns)
 
