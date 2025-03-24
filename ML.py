@@ -94,6 +94,9 @@ class ML():
             'Feb_Sale': 'mean', 
             'Mar_Sale': 'mean'
         })
+        cluster_stats['jan_feb_growth'] = (cluster_stats['Feb_Sale'] - cluster_stats['Jan_Sale']) / cluster_stats['Jan_Sale']
+        cluster_stats['feb_mar_growth'] = (cluster_stats['Mar_Sale'] - cluster_stats['Feb_Sale']) / cluster_stats['Feb_Sale']
+        cluster_stats['projected_growth'] = cluster_stats['feb_mar_growth'] + cluster_stats['jan_feb_growth']
         return cluster_stats
 
 
