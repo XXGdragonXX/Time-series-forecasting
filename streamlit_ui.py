@@ -96,7 +96,7 @@ def main():
                 
             # except Exception as e:
             #     st.error(f"Model execution failed: {str(e)}")
-            st.write(f"Clustered data datatype: {type(clustered_data)}")
+            
             st.write(clustered_data)
 
 

@@ -89,7 +89,12 @@ class ML():
             'Feb_Sale': self.data['Feb_Sale'].values,
             'Mar_Sale': self.data['Mar_Sale'].values
         })
-        return clustered_data
+        cluster_stats = clustered_data.groupby('Cluster').agg({
+            'Jan_Sale': 'mean',
+            'Feb_Sale': 'mean', 
+            'Mar_Sale': 'mean'
+        })
+        return cluster_stats
 
 
 
