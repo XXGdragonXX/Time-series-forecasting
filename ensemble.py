@@ -9,8 +9,9 @@ import logging
 class Ensemble():
     def __init__(self, data , weight_ml,weight_ma,model):
         self.data = data
-        self.ml = ML(data)
-        self.ma = MA(data)
+        self.category = category
+        self.ml = ML(data,category)
+        self.ma = MA(data,category)
         self.weight_ml = weight_ml
         self.weight_ma = weight_ma
         self.model = model
@@ -27,8 +28,8 @@ class Ensemble():
         forecast = []
         for index, row in forecast_ml.iterrows():
             month_dict = {
-                "Brand": row['Brand'],
-                "April_Forecast": self.weight_ml * row['April_Forecast'] + self.weight_ma * forecast_ma.loc[forecast_ma['Brand'] == row['Brand'], 'April_Forecast'].values[0]
+                self.category: row[self.category],
+                "April_Forecast": self.weight_ml * row['April_Forecast'] + self.weight_ma * forecast_ma.loc[forecast_ma[self.category] == row[self.category], 'April_Forecast'].values[0]
             }
             forecast.append(month_dict)
         df_forecast = pd.DataFrame(forecast)

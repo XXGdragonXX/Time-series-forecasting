@@ -70,7 +70,7 @@ def main():
                 st.write(updated_data[category].nunique())
         with st.spinner("Running ensemble model... This may take a few moments"):
             try:
-                ensemble = Ensemble(updated_data, weight_ml, weight_ma, model)
+                ensemble = Ensemble(updated_data, weight_ml, weight_ma, model,category)
                 final_forecast = ensemble.final_forecast()
                 
                 # Display Results
