@@ -76,7 +76,7 @@ def main():
             with col2:
                 st.write("**Unique Brands:**")
                 st.write(data['Brand'].nunique())
-            with st.spinner("Running ensemble model... This may take a few moments"):
+        with st.spinner("Running ensemble model... This may take a few moments"):
             try:
                 ensemble = Ensemble(updated_data, weight_ml, weight_ma, model)
                 final_forecast = ensemble.final_forecast()
