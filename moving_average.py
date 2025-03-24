@@ -3,7 +3,7 @@ import numpy as np
 import logging
 
 class MA():
-    def __init__(self, data):
+    def __init__(self, data , category):
         self.data = data
         self.weight_jan = 0.2
         self.weight_feb = 0.3

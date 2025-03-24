@@ -5,7 +5,7 @@ from statsmodels.tsa.arima.model import ARIMA
 import logging
 
 class ML():
-    def __init__(self, data):
+    def __init__(self, data ,category):
         self.data = data
         self.category = category
 
