@@ -12,8 +12,8 @@ def main():
     st.write(data.columns)
     st.write("Brands")
     st.write(data['Brand'].unique())
-    weight_ml = st.input("Enter the weightage for ML model")
-    weight_ma = st.input("Enter the weightage for Moving Average model")
+    weight_ml = st.number_input("Enter the weightage for ML model")
+    weight_ma = st.number_input("Enter the weightage for Moving Average model")
 
 
     st.write("Ensemble Model:")
