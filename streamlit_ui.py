@@ -27,7 +27,7 @@ def main():
     # Model Selection
     model = st.sidebar.selectbox(
         "Select Forecasting Model",
-        ["Prophet", "ARIMA" , "Kmeans"]
+        ["Prophet", "ARIMA" , "Kmeans"],
         help="Choose the time series forecasting model"
     )
 
