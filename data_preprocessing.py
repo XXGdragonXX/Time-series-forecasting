@@ -19,22 +19,34 @@ def generate_data(data,category):
 def get_monthly_data(data,category):
     category_lvl_data = generate_data(data,category)
     print(category_lvl_data.head())
-    monthly_sales = {}
-    months = category_lvl_data['date'].dt.month.unique()
-    for month in months:
-        month_name = pd.to_datetime(f'2025-{month}-01').strftime('%b')  # Convert month number to name
-        monthly_sales[month_name] = (
-            category_lvl_data[category_lvl_data['Date'].dt.month == month]
-            .groupby(category)['Total_Sale']
-            .sum()
-            .reset_index()
-            .rename_columns = {'Total_Sale':f'{month_name}_Sale'}
-        )
-    final_table = list(monthly_sales.values())[0]
-    for month_df in list(monthly_sales.values())[1:]:
-        final_table = final_table.merge(month_df, on=category, how="inner")
+    category_lvl_data['Month'] = category_lvl_data['Date'].dt.strftime('%b_%Y')
+    monthly_sales = (
+        category_lvl_data.groupby([category,'Month'])['Total_sale']
+        .sum()
+        .unstack()
+        .reset_index()
+    
+    )
+    monthly_sales.columns = [col.split('_')[0] + '_Sale' if '_' in col else col 
+                        for col in monthly_sales.columns]
+    
 
-    print(final_table.head())
+    # monthly_sales = {}
+    # months = category_lvl_data['date'].dt.month.unique()
+    # for month in months:
+    #     month_name = pd.to_datetime(f'2025-{month}-01').strftime('%b')  # Convert month number to name
+    #     monthly_sales[month_name] = (
+    #         category_lvl_data[category_lvl_data['Date'].dt.month == month]
+    #         .groupby(category)['Total_Sale']
+    #         .sum()
+    #         .reset_index()
+    #         .rename_columns = {'Total_Sale':f'{month_name}_Sale'}
+    #     )
+    # final_table = list(monthly_sales.values())[0]
+    # for month_df in list(monthly_sales.values())[1:]:
+    #     final_table = final_table.merge(month_df, on=category, how="inner")
+
+    print(monthly_sales.head())
 
 
 
