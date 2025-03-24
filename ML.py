@@ -80,16 +80,16 @@ class ML():
         kmeans = KMeans(n_clusters=optimal_clusters, init='k-means++', random_state=42)
         clusters = kmeans.fit_predict(scaled_features)
 
-        clustered_data = pd.DataFrame(
+        clustered_data = pd.DataFrame({
             self.category: primary_keys,
             'Cluster': clusters
             'Jan_Sale': self.data['Jan_Sale'],
             'Feb_Sale': self.data['Feb_Sale'],
             'Mar_Sale': self.data['Mar_Sale']
 
-        )
+        })
         return clustered_data
-        
+
 
 
 
