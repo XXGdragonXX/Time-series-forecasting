@@ -3,6 +3,7 @@ import numpy as np
 from prophet import Prophet
 from statsmodels.tsa.arima.model import ARIMA
 import logging
+from sklearn.cluster import KMeans
 
 class ML():
     def __init__(self, data ,category):
@@ -47,4 +48,21 @@ class ML():
         arima_forecast = self.data[[self.category, 'April_Forecast']]
         return arima_forecast
 
+
+    # def calculate_wcss(data, max_clusters=10):
+    # """Calculate WCSS for different numbers of clusters"""
+    #     wcss = []
+    #     for n in range(1, max_clusters+1):
+    #         kmeans = KMeans(n_clusters=n, init='k-means++', random_state=42)
+    #         kmeans.fit(data)
+    #         wcss.append(kmeans.inertia_)
+    #     return wcss
+
     
+    def unsupervised_model(self):
+        """
+        Calculate april forecast using unsupervised learnning
+        """
+        pass
+
+
