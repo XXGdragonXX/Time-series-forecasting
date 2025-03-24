@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from prophet import Prophet
+from statsmodels.tsa.arima.model import ARIMA
 import logging
 
 class ML():
@@ -30,4 +31,19 @@ class ML():
         return ml_forecast
 
 
+    def arima(self):
+        """
+        Calculate april forecast using ARIMA model
+        """
+        forecast = []
+        for index, rows in self.data.iterrows():
+            arima_series = rows[['Jan_Sale', 'Feb_Sale', 'March_Sale']]
+            model = ARIMA(arima_series, order=(1,1,0))
+            model_fit = model.fit()
+            forecasted_value = model_fit.forecast(steps=1)
+            forecast.append(forecasted_value[0])
+        self.data['April_Forecast'] = forecast
+        arima_forecast = self.data[['Brand', 'April_Forecast']]
+        return arima_forecast
 
+    

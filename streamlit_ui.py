@@ -105,6 +105,15 @@ def main():
     st.sidebar.write(f"🟢 ML Weight: **{weight_ml}**")
     st.sidebar.write(f"🔵 Moving Average Weight: **{weight_ma}** (Auto-Adjusted)")
 
+    st.sidebar.markdown("---")
+
+    st.sidebar.header("📊 Model Selection")
+    model = st.sidebar.selectbox("Select Model", ["Prophet", "ARIMA"])
+
+    st.sidebar.markdown("---")
+
+
+
     # Ensemble Model Explanation
     st.markdown("### 🔗 How the Ensemble Model Works")
     st.write("The **final forecast** is computed as a weighted combination of:")
@@ -117,7 +126,7 @@ def main():
     # Run Model Button
     if st.button("🚀 Run Ensemble Model"):
         with st.spinner("Running Ensemble Model... Please wait. ⏳"):
-            ensemble = Ensemble(data, weight_ml, weight_ma)
+            ensemble = Ensemble(data, weight_ml, weight_ma,model)
             final_forecast = ensemble.final_forecast()
 
             # Convert Brand to string for better display

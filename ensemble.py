@@ -7,18 +7,22 @@ import logging
 
 
 class Ensemble():
-    def __init__(self, data , weight_ml,weight_ma):
+    def __init__(self, data , weight_ml,weight_ma,self.model):
         self.data = data
         self.ml = ML(data)
         self.ma = MA(data)
         self.weight_ml = weight_ml
         self.weight_ma = weight_ma
+        self.model = model
 
     def final_forecast(self):
         """
         Calculate the final forecast using ensemble model.
         """
-        forecast_ml = self.ml.timeseries()
+        if model == 'Prophet':
+            forecast_ml = self.ml.timeseries()
+        elif model == 'ARIMA':
+            forecast_ml = self.ml.arima()
         forecast_ma = self.ma.calculate_moving_average()
         forecast = []
         for index, row in forecast_ml.iterrows():
