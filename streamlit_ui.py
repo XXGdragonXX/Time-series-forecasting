@@ -48,18 +48,6 @@ def main():
     - 🔵 Moving Average Weight: **{weight_ma}**
     """)
 
-    # Process Data
-    # try:
-    data = pd.read_csv("walmart.csv")
-    logging.info(f"Data loaded successfully: {data.shape}")
-    data_preparation = data_prep(data, category)
-    updated_data = data_preparation.main()
-
-
-    # Display Data
-    st.subheader("📊 Monthly Sales by Selected Category")
-    st.dataframe(updated_data.style.format("{:,.2f}"), height=300)
-
     with st.expander("🔍 Dataset Overview"):
         col1, col2 = st.columns(2)
         with col1:
@@ -74,7 +62,21 @@ def main():
     st.markdown("### 🚀 Forecast April Sales")
     
     if st.button("Run Ensemble Model", type="primary"):
-        with st.spinner("Running ensemble model... This may take a few moments"):
+        data = pd.read_csv("walmart.csv")
+        logging.info(f"Data loaded successfully: {data.shape}")
+        data_preparation = data_prep(data,category)
+        updated_data = data_preparation.main()
+
+
+        with st.expander("🔍 Dataset Overview"):
+            col1, col2 = st.columns(2)
+            with col1:
+                st.write("**Columns in Dataset:**")
+                st.write(data.columns.tolist())
+            with col2:
+                st.write("**Unique Brands:**")
+                st.write(data['Brand'].nunique())
+            with st.spinner("Running ensemble model... This may take a few moments"):
             try:
                 ensemble = Ensemble(updated_data, weight_ml, weight_ma, model)
                 final_forecast = ensemble.final_forecast()
