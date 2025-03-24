@@ -36,7 +36,7 @@ class ML():
         Calculate april forecast using ARIMA model
         """
         forecast = []
-        for index, rows in self.data.iterrows():
+        for index, row in self.data.iterrows():
             arima_series = [row["Jan_Sale"], row["Feb_Sale"], row["March_Sale"]]
             model = ARIMA(arima_series, order=(1,1,0))
             model_fit = model.fit()
