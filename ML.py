@@ -67,7 +67,9 @@ class ML():
         """
         max_clusters = 10
         wcss = []
-        features = self.data[['Jan_Sale', 'Feb_Sale', 'Mar_Sale']]
+        features = self.data[['Jan_Sale', 'Feb_Sale', 'Mar_Sale']].copy()
+        if features.isnull().values.any():
+            features = features.fillna(features.mean())
         scaler = StandardScaler()
         scaled_features = scaler.fit_transform(features)
         primary_keys = self.data[self.category]
