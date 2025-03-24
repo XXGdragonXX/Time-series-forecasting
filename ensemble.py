@@ -7,12 +7,12 @@ import logging
 
 
 class Ensemble():
-    def __init__(self, data):
+    def __init__(self, data , weight_ml,weight_ma):
         self.data = data
         self.ml = ML(data)
         self.ma = MA(data)
-        self.weight_ml = 0.5
-        self.weight_ma = 0.5    
+        self.weight_ml = weight_ml
+        self.weight_ma = weight_ma
 
     def final_forecast(self):
         """

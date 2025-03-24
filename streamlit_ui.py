@@ -11,18 +11,22 @@ def main():
     st.write("Columns:")
     st.write(data.columns)
 
+    weight_ml = st.input("Enter the weightage for ML model")
+    weight_ma = st.input("Enter the weightage for Moving Average model")
+
 
     st.write("Ensemble Model:")
     st.write("The ensemble model uses the moving average and time series model to forecast the sales for April.")
     st.write("The final forecast is calculated using the weighted average of the forecasts from the two models.")
-    st.write("The weights for the two models are set to 0.5 each.")
+    st.write("The weights for the two models are set on the values given in the above section.")
     st.write("The final forecast is calculated as follows:")
     st.code("""
-    final_forecast = 0.5 * forecast_ml + 0.5 * forecast_ma
+    final_forecast = weight_ml * forecast_ml + weight_ma * forecast_ma
     """)
     if st.button("Run Ensemble Model"):
-        ensemble = Ensemble(data)
+        ensemble = Ensemble(data, weight_ml, weight_ma)
         final_forecast = ensemble.final_forecast()
+        final_forecast['Brand'] = final_forecast.Brand.astype(str)
         st.write("The final forecast is then displayed in the table below:")
         st.write("Final Forecast:")
         st.table(final_forecast)
