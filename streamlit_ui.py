@@ -48,14 +48,6 @@ def main():
     - 🔵 Moving Average Weight: **{weight_ma}**
     """)
 
-    with st.expander("🔍 Dataset Overview"):
-        col1, col2 = st.columns(2)
-        with col1:
-            st.write("**Columns in Dataset:**")
-            st.write(data.columns.tolist())
-        with col2:
-            st.write("**Unique Brands:**")
-            st.write(data['Brand'].nunique())
 
     # Model Execution
     st.markdown("---")
