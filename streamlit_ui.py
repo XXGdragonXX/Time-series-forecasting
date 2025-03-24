@@ -12,7 +12,6 @@ def main():
     st.write("The final forecast is calculated using an **Ensemble Model** that combines both predictions.")
     st.write("Use the sidebar to adjust the model weightage and click the button to run the model.")
     st.write("Dataset link : https://www.kaggle.com/datasets/devarajv88/walmart-sales-dataset/data ")
-    data = pd.read_csv("walmart.csv")
     # Display Data Overview
  # Sidebar Controls
     st.sidebar.header("⚙️ Configuration")
@@ -50,6 +49,7 @@ def main():
 
     # Process Data
     try:
+        data = pd.read_csv("walmart.csv")
         data_preparation = data_prep(data, category)
         updated_data = data_preparation.get_monthly_data()
     except Exception as e:
