@@ -96,7 +96,7 @@ def main():
                 
             # except Exception as e:
             #     st.error(f"Model execution failed: {str(e)}")
-            st.write(f"{clustered_data}")
+            st.table(f"{clustered_data}")
 
 
     # Footer
