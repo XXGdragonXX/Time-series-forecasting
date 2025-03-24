@@ -83,7 +83,7 @@ def main():
     """, language="sql")
     # Load Data
     data = pd.read_csv("final_data.csv")
-
+    data['Brand'] = data['Brand'].astype(str)  # Convert Brand to string for better display
     # Display Data Overview
     with st.expander("🔍 View Dataset Overview"):
         st.write("#### Columns in the Dataset:")
@@ -120,12 +120,14 @@ def main():
             final_forecast = ensemble.final_forecast()
 
             # Convert Brand to string for better display
-            final_forecast['Brand'] = final_forecast.Brand.astype(str)
+            # final_forecast['Brand'] = final_forecast.Brand.astype(str)
+
+            final_table = pd.join(data,final_forecast, on = 'Brand')
 
             # Display Final Forecast
             st.success("✅ Model Execution Completed!")
             st.markdown("### 📊 Final Sales Forecast for April")
-            st.dataframe(final_forecast.style.format({"Forecast": "{:,.2f}"}))  # Beautify table with formatted numbers
+            st.dataframe(final_table.style.format({"Forecast": "{:,.2f}"}))  # Beautify table with formatted numbers
 
 if __name__ == "__main__":
     main()
