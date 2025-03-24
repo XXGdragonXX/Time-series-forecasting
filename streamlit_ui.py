@@ -64,10 +64,10 @@ def main():
             col1, col2 = st.columns(2)
             with col1:
                 st.write("**Columns in Dataset:**")
-                st.write(data.columns.tolist())
+                st.write(updated_data.columns.tolist())
             with col2:
-                st.write("**Unique Brands:**")
-                st.write(data['Brand'].nunique())
+                st.write("**Unique Values:**")
+                st.write(updated_data[category].nunique())
         with st.spinner("Running ensemble model... This may take a few moments"):
             try:
                 ensemble = Ensemble(updated_data, weight_ml, weight_ma, model)
