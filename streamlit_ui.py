@@ -76,6 +76,9 @@ def main():
             
             # Display Results
             st.success("Forecast completed successfully!")
+
+            st.write("### 📊 Final Forecast")
+            st.table(final_forecast)
             total_jan = updated_data['Jan_Sale'].sum()
             total_feb = updated_data['Feb_Sale'].sum()
             total_mar = updated_data['Mar_Sale'].sum()
