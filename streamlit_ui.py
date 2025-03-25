@@ -79,7 +79,7 @@ def main():
             total_jan = updated_data['Jan_Sale'].sum()
             total_feb = updated_data['Feb_Sale'].sum()
             total_mar = updated_data['Mar_Sale'].sum()
-            total_april = final_forecast['April_Forecast'].sum()
+            total_apr = final_forecast['April_Forecast'].sum()
 
             
             growth_jan_feb = ((total_feb - total_jan) / total_jan) * 100
