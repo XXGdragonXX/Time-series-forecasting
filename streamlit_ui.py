@@ -76,26 +76,44 @@ def main():
             
             # Display Results
             st.success("Forecast completed successfully!")
+            total_jan = updated_data['Jan_Sale'].sum()
+            total_feb = updated_data['Feb_Sale'].sum()
+            total_mar = updated_data['Mar_Sale'].sum()
+            total_april = final_forecast['April_Forecast'].sum()
+
             
-            col1, col2 = st.columns([3, 1])
+            growth_jan_feb = ((total_feb - total_jan) / total_jan) * 100
+            growth_feb_mar = ((total_mar - total_feb) / total_feb) * 100
+            growth_mar_apr = ((total_apr - total_mar) / total_mar) * 100
+
+            # Create metric with delta comparisons
+            col1, col2, col3 = st.columns(3)
             with col1:
-                st.dataframe(
-                    final_forecast.style.format("{:,.2f}"),
-                    height=400
+                st.metric(
+                    "Jan → Feb Growth",
+                    f"${total_feb:,.2f}",
+                    delta=f"{growth_jan_feb:.1f}%",
+                    delta_color="normal"
                 )
+
             with col2:
                 st.metric(
-                    "Total April Forecast", 
-                    f"${final_forecast['April_Forecast'].sum():,.2f}"
+                    "Feb → Mar Growth",
+                    f"${total_mar:,.2f}",
+                    delta=f"{growth_feb_mar:.1f}%",
+                    delta_color="normal"
                 )
-            
-            # Visualization
-            st.line_chart(
-                final_forecast.set_index(category)['April_Forecast']
-            )
-                
-            # except Exception as e:
-            #     st.error(f"Model execution failed: {str(e)}")
+
+            with col3:
+                st.metric(
+                    "Mar → Apr Forecast",
+                    f"${total_apr:,.2f}",
+                    delta=f"{growth_mar_apr:.1f}%",
+                    delta_color="inverse" if growth_mar_apr < 0 else "normal"
+                )
+                            
+                        # except Exception as e:
+                        #     st.error(f"Model execution failed: {str(e)}")
 
 
 
